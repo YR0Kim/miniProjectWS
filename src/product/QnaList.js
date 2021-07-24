@@ -21,7 +21,8 @@ const QnaList = () => {
 
     const [qnaSearchList, setQnaSearchList] = useState(initState)
     const [loading, setLoading] = useState(false)
-    const [flag, setFlag] = useState(false)
+    let flag, setFlag;
+    [flag, setFlag] = useState(false);
     const [targetQno, setTargetQno] = useState(null)
 
     useEffect( () => {

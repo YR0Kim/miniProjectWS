@@ -36,31 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-a, a:link, a:visited, a:focus, a:active{
-  color:#fff;
-  text-decoration:none;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.메인,
-.디저트,
-.패션잡화,
-.액세서리,
-.육아,
-.생활,
-.반려동물용품,
-.뷰티,
-.기타 {
-  display: flex;
-  height: 6vh;   /* 메뉴간 간격 설정 */
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 1.2rem;  /* 폰트 크기 설정 */
-  padding-left: 1.1rem;
-}
