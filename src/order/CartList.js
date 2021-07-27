@@ -17,7 +17,9 @@ const initState = {
     end: 0
 }
 
-const CartList = () => {
+const CartList = ({location}) => {
+
+    const username = "user76@aaa.com"
 
     const [cartList, setCartList] = useState(initState)
     const [loading, setLoading] = useState(false)
@@ -27,12 +29,14 @@ const CartList = () => {
 
     useEffect(() => {
         setLoading(true)
+        console.log("username: ", username, "page: "+cartList.page)
 
         //이 때 cart의 데이터로 분류된 것만 끌어옴
-        orderService.getCartList(cartList.page).then(data => {
+        orderService.getCartList(username, cartList.page).then(data => {
             console.log("주입할 데이터: ", data)
             setCartList(data)
             console.log("주입된 데이터", cartList)
+            setLoading(false)
         })
     }, [flag])
 

@@ -1,7 +1,8 @@
 import axios from "axios";
 
 
-const baseURL = "http://localhost:8080/"
+const baseURL = "http://localhost:8080/member"
+
 const headerObj = {
     headers : {'Content-Type': 'application/json'}
 }
@@ -9,22 +10,52 @@ const headerObj = {
 const memberService = () => {
 
     const readMember = async (username) => {
-
-        const result = await axios.get(baseURL+"member/user="+username, headerObj)
-        const data = await result.data
-
-        return data
+        console.log("username: ", username)
+        const result = await axios.get( baseURL+"/info?username="+username, headerObj)
+        console.log("result: ", result)
+        return result.data
     }
 
-    const registMember = async (member) => {
+    const registCustomer= async (member) => {
         const memberStr = JSON.stringify(member)
-        console.log(memberStr)
-        const result = await axios.post(baseURL+"member/register", memberStr, headerObj)
+        console.log("memberStr: ",memberStr)
+        const result = await axios.post(baseURL+"/customer", memberStr, headerObj)
 
-        console.log(result.data)
+        console.log("result data: ", result.data)
 
         return result.data
     }
 
-    return {readMember, registMember}
+    const registSeller = async (member) => {
+        const memberStr = JSON.stringify(member)
+
+        const result = await axios.post(baseURL+"/seller", memberStr, headerObj)
+
+        return result.data
+    }
+
+    const delMember = async (username) => {
+        const result = await axios.put(baseURL+"/delete?username="+username,headerObj)
+        console.log(result.data)
+
+        return result.data
+
+    }
+
+    const modMember = async (username, member) => {
+        console.log("modMember로 넘어온 데이터:", username)
+
+        const memStr = JSON.stringify(member)
+        console.log("modMember에서 변형된 데이터:", memStr)
+
+        const result = await axios.put(baseURL+"/modify?username="+username, memStr, headerObj)
+        console.log(result)
+
+        return result.data
+    }
+
+    return {readMember, registCustomer, registSeller, delMember, modMember}
+
 }
+
+export default memberService();

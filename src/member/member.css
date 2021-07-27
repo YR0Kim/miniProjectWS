@@ -1,0 +1,49 @@
+#userId {
+    padding: 12px 8px;
+    text-align: left;
+}
+
+#password {
+    padding: 12px 8px;
+}
+
+#repassword {
+    padding: 12px 8px;
+}
+
+#nickname {
+    padding: 12px 8px;
+}
+
+#userName {
+    padding: 12px 8px;
+}
+
+#zipcode {
+    padding: 12px 8px;
+}
+
+#maddress1 {
+    padding: 12px 8px;
+}
+
+#maddress2 {
+    padding: 12px 8px;
+}
+
+#select {
+    padding: 12px 8px;
+}
+
+#mtel2 {
+    padding: 12px 8px;
+}
+
+#mtel3 {
+    padding: 12px 8px;
+}
+
+.memBtn {
+    padding: 5px 12px;
+    vertical-align: middle;
+}

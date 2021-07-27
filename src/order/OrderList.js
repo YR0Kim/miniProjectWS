@@ -17,8 +17,9 @@ const initState = {
     end: 0
 }
 
-const OrderList = () => {
+const OrderList = ({location}) => {
 
+    const username= "user76@aaa.com"
 
     const [orderList, setOrderList] = useState(initState)
     const [loading, setLoading] = useState(false)
@@ -30,7 +31,7 @@ const OrderList = () => {
         setLoading(true)
 
         //이 때 order의 데이터로 분류된 것만 끌어옴
-        orderService.getOrderList(orderList.page).then(data => {
+        orderService.getOrderList(username, orderList.page).then(data => {
             console.log("주입할 데이터: ", data)
             setOrderList(data)
             console.log("주입된 데이터: ", orderList)

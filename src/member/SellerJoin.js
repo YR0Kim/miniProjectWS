@@ -1,15 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React, {useState} from 'react';
+import {makeStyles} from "@material-ui/core/styles";
 import memberService from "./memberService";
-import DaumPost from "./DaumPost";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
 import {NativeSelect} from "@material-ui/core";
-import './member.css'
-import {Link} from "react-router-dom";
+import {Label} from "semantic-ui-react";
 
 const initState = {
     username: '',
@@ -22,6 +18,7 @@ const initState = {
     mtel1: '010',
     mtel2: '',
     mtel3: '',
+    brno: '',
     enabled: 0
 }
 
@@ -41,30 +38,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const MemberJoin = ({history}) => {
+const SellerJoin = ({history}) => {
 
-    const [memJoin, setMemJoin] = useState(initState)
+    const [sellerJoin, setSellerJoin] = useState(initState)
+    const [mtel1, setMTel1] = useState('')
 
-    //select박스를 이용하기 위한 변수 설정과 상태관리
     const classes = useStyles();
-    const [tel1, setTel1] = useState('');
 
     const handleChange = (e) => {
-        setTel1(e.target.value);
+        setMTel1(e.target.value);
     };
 
     const change = (e) => {
         console.log(e.target.name)
         console.log(e.target.value)
-        memJoin[e.target.name] = e.target.value
-        setMemJoin({...memJoin})
+        sellerJoin[e.target.name] = e.target.value
+        setSellerJoin({...sellerJoin})
     }
 
     const clickRegister = async () => {
-        memberService.registCustomer({...memJoin}).then(data => {
+        memberService.registSeller({...sellerJoin}).then(data => {
             alert("회원가입이 완료되었습니다.")
 
-            //등록 후 메인 페이지로 이동
             history.push("/")
         })
     }
@@ -156,6 +151,13 @@ const MemberJoin = ({history}) => {
                     </td>
                 </tr>
                 <tr>
+                    <td><Label>사업자등록번호</Label></td>
+                    <td>
+                        <TextField required id="brno" name="brno"
+                                   variant="outlined" placeholder="사업자등록번호" onChange={change}/>
+                    </td>
+                </tr>
+                <tr>
                     <td colSpan="2">
                         <Button class="memBtn" variant="outlined" color="primary" onClick={clickRegister}>회원가입</Button>
                     </td>
@@ -166,4 +168,4 @@ const MemberJoin = ({history}) => {
     );
 };
 
-export default MemberJoin;
+export default SellerJoin;
